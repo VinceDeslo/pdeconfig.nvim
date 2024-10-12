@@ -1,0 +1,121 @@
+{inputs}: let
+  inherit (inputs.nixpkgs) legacyPackages;
+in rec {
+  # Build my configuration as a Vim plugin
+  mkVimPlugin = {system}: let
+    inherit (pkgs) vimUtils;
+    inherit (vimUtils) buildVimPlugin;
+    pkgs = legacyPackages.${system};
+  in
+    buildVimPlugin {
+      name = "pdeconfig";
+      postInstall = ''
+        rm -rf $out/LICENSE
+        rm -rf $out/README.md
+        rm -rf $out/flake.lock
+        rm -rf $out/flake.nix
+        rm -rf $out/justfile
+        rm -rf $out/lib
+      '';
+      src = ../.;
+    };
+
+  # Build all my Neovim plugins
+  mkNeovimPlugins = {system}: let
+    inherit (pkgs) vimPlugins;
+    pkgs = legacyPackages.${system};
+    pdeconfig-nvim = mkVimPlugin {inherit system;};
+  in [
+    # Config
+    pdeconfig-nvim
+
+    # Languages
+    vimPlugins.nvim-lspconfig
+    vimPlugins.nvim-treesitter.withAllGrammars
+
+    # Telescope
+    vimPlugins.telescope-nvim
+    vimPlugins.plenary-nvim
+
+    # Theme
+    vimPlugins.kanagawa-nvim
+
+    # Editor plugins
+    vimPlugins.gitsigns-nvim
+    vimPlugins.lualine-nvim
+    vimPlugins.indent-blankline-nvim
+    vimPlugins.nvim-treesitter-context
+    vimPlugins.trouble-nvim
+    vimPlugins.noice-nvim
+    vimPlugins.nvim-notify
+    vimPlugins.nui-nvim
+    vimPlugins.nvim-web-devicons
+  ];
+
+  # Build additional packages that aren't core editor functionality
+  mkExtraPackages = {system}: let
+    inherit (pkgs) nodePackages;
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in [
+    # language servers
+    nodePackages.bash-language-server
+    nodePackages.diagnostic-languageserver
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.yaml-language-server
+    pkgs.nil
+    pkgs.lua-language-server
+    pkgs.gopls
+    pkgs.rust-analyzer
+    pkgs.helm-ls
+    pkgs.terraform-ls
+    pkgs.snyk
+
+    # formatters
+    pkgs.alejandra
+    pkgs.gofumpt
+    pkgs.golines
+    pkgs.rustfmt
+    pkgs.terraform
+  ];
+
+  # Entrypoint for the Lua configuration of Neovim in this repo
+  mkExtraConfig = ''
+    lua << EOF
+      require 'pdeconfig'.init()
+    EOF
+  '';
+
+  # Build Neovim with my packages and plugins
+  mkNeovim = {system}: let
+    inherit (pkgs) lib neovim;
+    extraPackages = mkExtraPackages {inherit system;};
+    pkgs = legacyPackages.${system};
+    start = mkNeovimPlugins {inherit system;};
+  in
+    neovim.override {
+      configure = {
+        customRC = mkExtraConfig;
+        packages.main = {inherit start;};
+      };
+      extraMakeWrapperArgs = ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
+      withNodeJs = true;
+    };
+
+  # Build the home manager entry that will be used by my dotfiles repo
+  mkHomeManager = {system}: let
+    extraConfig = mkExtraConfig;
+    extraPackages = mkExtraPackages {inherit system;};
+    plugins = mkNeovimPlugins {inherit system;};
+  in {
+    inherit extraConfig extraPackages plugins;
+    defaultEditor = true;
+    enable = true;
+    withNodeJs = true;
+  };
+}
