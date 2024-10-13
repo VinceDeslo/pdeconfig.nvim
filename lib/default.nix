@@ -41,6 +41,7 @@ in rec {
     vimPlugins.kanagawa-nvim
 
     # Editor plugins
+    vimPlugins.comment-nvim
     vimPlugins.gitsigns-nvim
     vimPlugins.lualine-nvim
     vimPlugins.indent-blankline-nvim
