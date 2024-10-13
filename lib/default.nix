@@ -36,6 +36,7 @@ in rec {
     # Telescope
     vimPlugins.telescope-nvim
     vimPlugins.plenary-nvim
+    vimPlugins.telescope-fzf-native-nvim
 
     # Theme
     vimPlugins.kanagawa-nvim
