@@ -11,13 +11,14 @@ It is highly inspired from the [thealtf4stream.nvim](https://github.com/ALT-F4-L
 # Format the Nix code 
 nix fmt
 
-# Get access to any dev tooling
+# Dev shell
 nix develop
 
 # Dev shell commands
 just
 just update
 just check
+just run
 just package "default"
 just package "neovim"
 ```

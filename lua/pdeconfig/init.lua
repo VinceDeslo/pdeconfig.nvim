@@ -1,5 +1,5 @@
 local function init()
-	-- Insert require statements for editor plugin configuration
+    require 'pdeconfig.vim'.init()
 end
 
 return {

@@ -50,6 +50,7 @@ in rec {
     vimPlugins.nvim-notify
     vimPlugins.nui-nvim
     vimPlugins.nvim-web-devicons
+    vimPlugins.which-key-nvim
   ];
 
   # Build additional packages that aren't core editor functionality
