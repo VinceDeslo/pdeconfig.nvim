@@ -4,6 +4,7 @@ local gitsigns = require 'gitsigns'
 local notify = require 'notify'
 local noice = require 'noice'
 local comment = require 'comment'
+local indent_blankline = require 'ibl'
 
 -- https://github.com/rebelot/kanagawa.nvim
 local function set_theme()
@@ -78,6 +79,11 @@ local function setup_comment()
     comment.setup {} -- defaults are solid
 end
 
+-- https://github.com/lukas-reineke/indent-blankline.nvim
+local function setup_indent_blankline()
+    indent_blankline.setup {} -- defaults are solid
+end
+
 local function init()
     set_theme()
     setup_lualine()
@@ -85,6 +91,7 @@ local function init()
     setup_notify()
     setup_noice()
     setup_comment()
+    setup_indent_blankline()
 end
 
 return {
