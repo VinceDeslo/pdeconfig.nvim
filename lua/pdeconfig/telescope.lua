@@ -3,6 +3,7 @@ local builtin = require 'telescope.builtin'
 local themes = require 'telescope.themes'
 local helpers = require 'pdeconfig.helpers'
 
+-- https://github.com/nvim-telescope/telescope.nvim
 local function setup_telescope()
     telescope.setup {
         defaults = {

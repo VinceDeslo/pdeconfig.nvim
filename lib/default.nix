@@ -31,7 +31,11 @@ in rec {
 
     # Languages
     vimPlugins.nvim-lspconfig
+
+    # Treesitter
     vimPlugins.nvim-treesitter.withAllGrammars
+    vimPlugins.nvim-treesitter-textobjects
+    vimPlugins.nvim-treesitter-context
 
     # Telescope
     vimPlugins.telescope-nvim
@@ -46,7 +50,6 @@ in rec {
     vimPlugins.gitsigns-nvim
     vimPlugins.lualine-nvim
     vimPlugins.indent-blankline-nvim
-    vimPlugins.nvim-treesitter-context
     vimPlugins.trouble-nvim
     vimPlugins.noice-nvim
     vimPlugins.nvim-notify
