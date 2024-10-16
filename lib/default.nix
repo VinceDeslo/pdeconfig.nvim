@@ -42,6 +42,13 @@ in rec {
     vimPlugins.plenary-nvim
     vimPlugins.telescope-fzf-native-nvim
 
+    # Completions
+    vimPlugins.nvim-cmp
+    vimPlugins.luasnip
+    vimPlugins.cmp_luasnip
+    vimPlugins.cmp-nvim-lsp
+    vimPlugins.friendly-snippets
+
     # Theme
     vimPlugins.kanagawa-nvim
 

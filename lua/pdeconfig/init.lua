@@ -4,6 +4,7 @@ local function init()
     require 'pdeconfig.telescope'.init()
     require 'pdeconfig.treesitter'.init()
     require 'pdeconfig.lsp'.init()
+    require 'pdeconfig.completions'.init()
 end
 
 return {
