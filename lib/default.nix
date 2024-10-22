@@ -31,6 +31,7 @@ in rec {
 
     # Languages
     vimPlugins.nvim-lspconfig
+    vimPlugins.rustaceanvim
 
     # Treesitter
     vimPlugins.nvim-treesitter.withAllGrammars
@@ -84,7 +85,6 @@ in rec {
     pkgs.nil
     pkgs.lua-language-server
     pkgs.gopls
-    pkgs.rust-analyzer
     pkgs.helm-ls
     pkgs.terraform-ls
     pkgs.snyk

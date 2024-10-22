@@ -91,7 +91,6 @@ local function setup_language_servers()
             },
         }
     },
-    -- rust_analyzer = {},
     -- snyk_ls = {}, -- Configure separately
   }
 
