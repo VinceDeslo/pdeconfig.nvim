@@ -51,12 +51,27 @@ local function setup_language_servers()
   local language_servers = {
     bashls = {},
     jsonls = {},
-    yamlls = {},
+    yamlls = {
+        on_attach = function(client, bufnr)
+          local path = vim.fn.expand("%:p")
+          if path:match("/helm/") then
+            client.stop()
+          end
+        end,
+    },
     html = {},
     cssls = {},
     ts_ls = {},
     docker_ls = {},
-    helm_ls = {},
+    helm_ls = {
+        settings = {
+            ['helm-ls'] = {
+                yamlls = {
+                    path = "yaml-language-server",
+                }
+            }
+        }
+    },
     terraformls = {},
     diagnosticls = {},
     gopls = {

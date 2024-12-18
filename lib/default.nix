@@ -32,6 +32,7 @@ in rec {
     # Languages
     vimPlugins.nvim-lspconfig
     vimPlugins.rustaceanvim
+    vimPlugins.vim-helm
 
     # Treesitter
     vimPlugins.nvim-treesitter.withAllGrammars
