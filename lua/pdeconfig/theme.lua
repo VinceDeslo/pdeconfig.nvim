@@ -1,4 +1,5 @@
 local kanagawa = require 'kanagawa'
+local kanagawa_colors = require 'kanagawa.colors'
 local lualine = require 'lualine'
 local gitsigns = require 'gitsigns'
 local notify = require 'notify'
@@ -57,6 +58,15 @@ end
 
 -- https://github.com/folke/noice.nvim
 local function setup_noice()
+    local colors = kanagawa_colors.setup()
+
+    local fg = colors.palette.lotusRed4
+    local bg = colors.theme.ui.bg
+
+    -- Set the cmdline colors to fix background
+    vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = fg, bg = bg })
+    vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = fg, bg = bg })
+
     noice.setup {
         lsp = {
             override = {
