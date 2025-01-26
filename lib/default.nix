@@ -89,6 +89,7 @@ in rec {
     pkgs.helm-ls
     pkgs.terraform-ls
     pkgs.snyk
+    pkgs.zls
 
     # formatters
     pkgs.alejandra

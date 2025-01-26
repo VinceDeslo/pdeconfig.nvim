@@ -62,6 +62,7 @@ local function setup_language_servers()
     html = {},
     cssls = {},
     ts_ls = {},
+    zls = {},
     docker_ls = {},
     helm_ls = {
         settings = {
