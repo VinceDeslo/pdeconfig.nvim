@@ -18,6 +18,15 @@ in rec {
         rm -rf $out/lib
       '';
       src = ../.;
+      nvimSkipModules = [
+        "init"
+        "pdeconfig.telescope"
+        "pdeconfig.theme"
+        "pdeconfig.lsp"
+        "pdeconfig.treesitter"
+        "pdeconfig.ai"
+        "pdeconfig.completions"
+      ];
     };
 
   # Build all my Neovim plugins
