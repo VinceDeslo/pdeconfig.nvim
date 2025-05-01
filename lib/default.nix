@@ -65,6 +65,9 @@ in rec {
     vimPlugins.nui-nvim
     vimPlugins.nvim-web-devicons
     vimPlugins.which-key-nvim
+
+    # AI tooling
+    vimPlugins.codecompanion-nvim
   ];
 
   # Build additional packages that aren't core editor functionality

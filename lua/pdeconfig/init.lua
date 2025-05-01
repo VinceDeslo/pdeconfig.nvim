@@ -5,6 +5,7 @@ local function init()
     require 'pdeconfig.treesitter'.init()
     require 'pdeconfig.lsp'.init()
     require 'pdeconfig.completions'.init()
+    require 'pdeconfig.ai'.init()
 end
 
 return {
