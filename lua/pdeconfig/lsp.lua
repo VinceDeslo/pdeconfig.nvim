@@ -44,7 +44,7 @@ local function on_attach(_, buffer)
   -- Custom Commands
   create_format_cmd(buffer)
 
-  vim.lsp.set_log_level("debug")
+  vim.lsp.set_log_level("error")
 end
 
 local function setup_language_servers()
