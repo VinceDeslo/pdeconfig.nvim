@@ -16,7 +16,7 @@
         lib = import ./lib {inherit inputs;};
       };
 
-      systems = ["aarch64-darwin"];
+      systems = ["aarch64-darwin" "x86_64-linux"];
 
       perSystem = {
         config,
