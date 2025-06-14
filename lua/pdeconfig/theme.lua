@@ -4,7 +4,7 @@ local lualine = require 'lualine'
 local gitsigns = require 'gitsigns'
 local notify = require 'notify'
 local noice = require 'noice'
-local comment = require 'comment'
+local comment = require 'Comment'
 local indent_blankline = require 'ibl'
 
 -- https://github.com/rebelot/kanagawa.nvim
