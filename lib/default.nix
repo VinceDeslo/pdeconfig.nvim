@@ -79,6 +79,7 @@ in rec {
     # Debuggers
     vimPlugins.nvim-dap
     vimPlugins.nvim-dap-virtual-text
+    vimPlugins.nvim-dap-ui
     vimPlugins.nvim-dap-go
 
     # AI tooling
