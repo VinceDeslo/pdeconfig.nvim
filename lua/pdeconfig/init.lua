@@ -6,6 +6,7 @@ local function init()
     require 'pdeconfig.lsp'.init()
     require 'pdeconfig.completions'.init()
     require 'pdeconfig.ai'.init()
+    require 'pdeconfig.debuggers'.init()
 end
 
 return {

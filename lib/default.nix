@@ -26,6 +26,7 @@ in rec {
         "pdeconfig.treesitter"
         "pdeconfig.ai"
         "pdeconfig.completions"
+        "pdeconfig.debuggers"
       ];
     };
 
@@ -74,6 +75,11 @@ in rec {
     vimPlugins.nui-nvim
     vimPlugins.nvim-web-devicons
     vimPlugins.which-key-nvim
+
+    # Debuggers
+    vimPlugins.nvim-dap
+    vimPlugins.nvim-dap-virtual-text
+    vimPlugins.nvim-dap-go
 
     # AI tooling
     vimPlugins.codecompanion-nvim
