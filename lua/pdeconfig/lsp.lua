@@ -107,7 +107,6 @@ local function setup_language_servers()
             },
         }
     },
-    -- snyk_ls = {}, -- Configure separately
   }
 
   for server, server_config in pairs(language_servers) do

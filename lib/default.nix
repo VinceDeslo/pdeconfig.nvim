@@ -107,7 +107,6 @@ in rec {
     pkgs.gopls
     pkgs.helm-ls
     pkgs.terraform-ls
-    pkgs.snyk
     pkgs.zls
 
     # formatters
