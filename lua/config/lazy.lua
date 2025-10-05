@@ -1,7 +1,30 @@
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+--
+-- Set globals
 local function set_vim_g()
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 end
+set_vim_g()
 
 -- https://neovim.io/doc/user/options.html
 local function set_vim_o()
@@ -28,6 +51,7 @@ local function set_vim_o()
 		vim.o[k] = v
 	end
 end
+set_vim_o()
 
 local function set_vim_wo()
 	local settings = {
@@ -44,11 +68,14 @@ local function set_vim_wo()
 		vim.wo[k] = v
 	end
 end
+set_vim_wo()
 
 local function set_vim_opt()
 	vim.opt.list = true
-	vim.opt.listchars:append("eol:↴")
+	-- vim.opt.listchars:append "eol:↴"
+	vim.opt.listchars:append("eol:~")
 end
+set_vim_opt()
 
 local function set_vim_keymaps()
 	local options = { noremap = false, silent = true }
@@ -65,6 +92,7 @@ local function set_vim_keymaps()
 	vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 end
+set_vim_keymaps()
 
 local function set_highight_on_yank()
 	local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -76,16 +104,17 @@ local function set_highight_on_yank()
 		pattern = "*",
 	})
 end
+set_highight_on_yank()
 
-local function init()
-	set_vim_g()
-	set_vim_o()
-	set_vim_wo()
-	set_vim_opt()
-	set_vim_keymaps()
-	set_highight_on_yank()
-end
-
-return {
-	init = init,
-}
+-- Setup lazy.nvim
+require("lazy").setup({
+	spec = {
+		-- import your plugins
+		{ import = "plugins" },
+	},
+	-- Configure any other settings here. See the documentation for more details.
+	-- colorscheme that will be used when installing plugins.
+	install = { colorscheme = { "kanagawa-wave" } },
+	-- automatically check for plugin updates
+	checker = { enabled = true },
+})

@@ -1,9 +1,9 @@
-local treesitter = require("nvim-treesitter.configs")
-local context = require("treesitter-context")
-
--- https://github.com/nvim-treesitter/nvim-treesitter
-local function setup_treesitter()
-	treesitter.setup({
+return {
+	"nvim-treesitter/nvim-treesitter",
+	branch = "master",
+	lazy = false,
+	build = ":TSUpdate",
+	opts = {
 		ensure_installed = {}, -- installation with all grammars covers this
 		auto_install = false,
 		highlight = { enable = true },
@@ -60,19 +60,5 @@ local function setup_treesitter()
 				},
 			},
 		},
-	})
-end
-
--- https://github.com/nvim-treesitter/nvim-treesitter-context
-local function setup_treesitter_context()
-	context.setup({})
-end
-
-local function init()
-	setup_treesitter()
-	setup_treesitter_context()
-end
-
-return {
-	init = init,
+	},
 }

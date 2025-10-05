@@ -24,7 +24,7 @@
         system,
         ...
       }: let
-        inherit (pkgs) alejandra just mkShell;
+        inherit (pkgs) alejandra just mkShell stylua;
       in {
         # Definition of the Neovim entrypoint based on packages below
         apps = {

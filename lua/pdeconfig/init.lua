@@ -1,14 +1,14 @@
 local function init()
-    require 'pdeconfig.vim'.init()
-    require 'pdeconfig.theme'.init()
-    require 'pdeconfig.telescope'.init()
-    require 'pdeconfig.treesitter'.init()
-    require 'pdeconfig.lsp'.init()
-    require 'pdeconfig.completions'.init()
-    require 'pdeconfig.ai'.init()
-    require 'pdeconfig.debuggers'.init()
+	require("pdeconfig.vim").init()
+	require("pdeconfig.theme").init()
+	require("pdeconfig.telescope").init()
+	require("pdeconfig.treesitter").init()
+	require("pdeconfig.lsp").init()
+	require("pdeconfig.completions").init()
+	require("pdeconfig.ai").init()
+	require("pdeconfig.debuggers").init()
 end
 
 return {
-    init = init,
+	init = init,
 }

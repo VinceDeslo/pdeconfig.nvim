@@ -1,1 +1,2 @@
-require 'pdeconfig'.init()
+-- require 'pdeconfig'.init()
+require("config.lazy")
