@@ -21,10 +21,16 @@ return {
 		-- Force Noice styling after colorscheme loads
 		local colors = require("kanagawa.colors").setup()
 		local theme = colors.theme
+
+        -- Theming for the Command line
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { bg = theme.ui.bg })
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = colors.palette.springBlue, bg = theme.ui.bg })
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = theme.syn.fun, bg = theme.ui.bg })
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePrompt", { fg = theme.ui.fg, bg = theme.ui.bg })
 		vim.api.nvim_set_hl(0, "NoiceCmdlineInput", { bg = theme.ui.bg })
+
+        -- Theming for the search line
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = colors.palette.sakuraPink, bg = theme.ui.bg })
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = colors.palette.sakuraPink, bg = theme.ui.bg })
 	end,
 }

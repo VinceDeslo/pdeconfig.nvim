@@ -106,15 +106,24 @@ local function set_highight_on_yank()
 end
 set_highight_on_yank()
 
+local function create_format_cmd()
+	local desc = "Format current buffer with LSP"
+    local function format()
+        vim.lsp.buf.format()
+    end
+
+	vim.api.nvim_create_user_command("Format", format, { desc = desc })
+	vim.keymap.set("n", "<leader>f", format, { desc = desc })
+end
+create_format_cmd()
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins
 		{ import = "plugins" },
 	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "kanagawa-wave" } },
-	-- automatically check for plugin updates
+	install = {
+        colorscheme = { "kanagawa-wave" }
+    },
 	checker = { enabled = true },
 })

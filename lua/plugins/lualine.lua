@@ -2,7 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	opts = {
 		options = {
-			icons_enabled = false,
+			icons_enabled = true,
 			theme = "palenight",
 			component_separators = "|",
 			section_separators = "",
